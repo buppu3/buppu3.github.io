@@ -14,5 +14,27 @@ Windows x64 版バイナリ: <A HREF="./openMSX/derived/x64-VC-Release.zip">x64-
 V9968 カートリッジ: <A HREF="./openMSX/share/extensions/HRA_V9968.xml">share/extensions/HRA_V9968.xml</A><BR/>
 FS-A1ST V9968 組み込み版: <A HREF="./openMSX/share/machines/Panasonic_FS-A1ST_V9968.xml">share/machines/Panasonic_FS-A1ST_V9968.xml</A><BR/>
 
+<H2>インストール方法</H2>
+<UL>
+<LI>openMSX の公式サイトから 21.0 / Win 64bit (install) をダウンロードしてインストールする</LI>
+<LI>openMSX を起動し、使用したい機種が使えるように(MSX-DOSが起動する辺りまで)設定する</LI>
+<LI>openMSX を終了する</LI>
+<LI><A HREF="./openMSX/derived/x64-VC-Release.zip">x64-VC-Release.zip</A> をダウンロードして展開後、出来たファイルを openmsx.exe へ上書きコピー</LI>
+<LI>使用する機種のファイルを share/machines フォルダから探し、テキストエディタで開く</LI>
+<LI>VDP 設定部分を探し、下記のようにファイルを編集して保存</LI>
+<LI>コピーした openMSX を起動し、メニューの [Machine] - [Select MSX machine] を選択、設定を編集した機種を選び、[Replace current machine] を押下</LI>
+</UL>
+
+<H3>設定ファイルの変更内容</H3>
+<PRE>
+    &lt;VDP id="VDP"&gt;
+      &lt;version&gt;V9968&lt;/version&gt;           &lt;!-- V9968 へ変更 --&gt;
+      &lt;vram&gt;128&lt;/vram&gt;                   &lt;!-- VRAM サイズは無視されます --&gt;
+      &lt;io base="0x98" num="5" type="O"/&gt; &lt;!-- num の数を 5 へ変更 --&gt;
+      &lt;io base="0x98" num="5" type="I"/&gt; &lt;!-- num の数を 5 へ変更 --&gt;
+      &lt;timing>0&lt;/timing&gt;                 &lt;!-- VDPコマンド動作速度 0:V9968 と同じ / 1:HS=0の時に V9958 の VDP コマンドエミュレータを使う --&gt;
+    &lt;/VDP&gt;
+</PRE>
+
 </BODY>
 </HTML>
