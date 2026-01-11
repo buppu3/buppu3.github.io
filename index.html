@@ -22,7 +22,7 @@ FS-A1ST V9968 組み込み版: <A HREF="./openMSX/share/machines/Panasonic_FS-A1
 <LI><A HREF="./openMSX/derived/x64-VC-Release.zip">x64-VC-Release.zip</A> をダウンロードして展開後、出来たファイルを openmsx.exe へ上書きコピー</LI>
 <LI>使用する機種のファイルを share/machines フォルダから探し、テキストエディタで開く</LI>
 <LI>VDP 設定部分を探し、下記のようにファイルを編集して保存</LI>
-<LI>コピーした openMSX を起動し、メニューの [Machine] - [Select MSX machine] を選択、設定を編集した機種を選び、[Replace current machine] を押下</LI>
+<LI>コピーした openmsx.exe を起動し、メニューの [Machine] - [Select MSX machine] を選択、設定を編集した機種を選び、[Replace current machine] を押下</LI>
 </UL>
 
 <H3>設定ファイルの変更内容</H3>
@@ -39,6 +39,10 @@ FS-A1ST V9968 組み込み版: <A HREF="./openMSX/share/machines/Panasonic_FS-A1
 <H2>既存の V9938/V9958 用ソフトを高速で使う方法(手抜き版)</H2>
 メニューの [Debugger] - [VDP register Viwer] を開き、R#20 の HS をクリックして 1 に設定してください<BR/>
 恒久的な設定ではないので、スクリーンモード切替毎に毎回設定する必要があります。<BR/>
+
+<H2>カートリッジ版について</H2>
+カートリッジ版は I/O アドレス 88h に割り当てられています。<BR/>
+また、映像が内蔵 VDP と別になりますので、メニューの [Setting] - [Video] - [Video source to display] で映像ソースを V9968 に切り替えてください。<BR/>
 
 </BODY>
 </HTML>
