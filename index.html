@@ -6,20 +6,23 @@
 </HEAD>
 <BODY>
 <H1>openMSX V9968 移植版</H1>
+ソースファイルは<A HREF="https://github.com/buppu3/openMSX/tree/v9968">こちら</A><BR/>
+
 <H2>実行バイナリ</H2>
-Windows x64 版バイナリ: <A HREF="./openMSX/derived/x64-VC-Release.zip">x64-VC-Release.zip</A><BR/>
+Windows x64 版バイナリ: <A HREF="./openMSX/derived/openmsx-21.0-v9968-2b4e105-x64-VC-Release.zip">openmsx-21.0-v9968-2b4e105-x64-VC-Release.zip</A><BR/>
+<!-- Linux 版バイナリ: <A HREF="./openMSX/derived/openmsx-21.0-v9968-2b4e105-x86_64-linux-opt-3rd-Release.zip">openmsx-21.0-v9968-2b4e105-x86_64-linux-opt-3rd-Release.zip</A><BR/> -->
 
 <H2>設定ファイル</H2>
 設定方法は下記のファイルを参照ください。<BR/>
 V9968 カートリッジ: <A HREF="./openMSX/share/extensions/HRA_V9968.xml">share/extensions/HRA_V9968.xml</A><BR/>
 FS-A1ST V9968 組み込み版: <A HREF="./openMSX/share/machines/Panasonic_FS-A1ST_V9968.xml">share/machines/Panasonic_FS-A1ST_V9968.xml</A><BR/>
 
-<H2>インストール方法</H2>
+<H2>インストール方法(Windows)</H2>
 <UL>
 <LI>openMSX の公式サイトから 21.0 / Win 64bit (install) をダウンロードしてインストールする</LI>
 <LI>openMSX を起動し、使用したい機種が使えるように(MSX-DOSが起動する辺りまで)設定する</LI>
 <LI>openMSX を終了する</LI>
-<LI><A HREF="./openMSX/derived/x64-VC-Release.zip">x64-VC-Release.zip</A> をダウンロードして展開後、出来たファイルを openmsx.exe へ上書きコピー</LI>
+<LI>実行バイナリをダウンロードして展開後、出来たファイルを openmsx.exe へ上書きコピー</LI>
 <LI>使用する機種のファイルを share/machines フォルダから探し、テキストエディタで開く</LI>
 <LI>VDP 設定部分を探し、下記のようにファイルを編集して保存</LI>
 <LI>コピーした openmsx.exe を起動し、メニューの [Machine] - [Select MSX machine] を選択、設定を編集した機種を選び、[Replace current machine] を押下</LI>
@@ -43,6 +46,17 @@ FS-A1ST V9968 組み込み版: <A HREF="./openMSX/share/machines/Panasonic_FS-A1
 <H2>カートリッジ版について</H2>
 カートリッジ版は I/O アドレス 88h に割り当てられています。<BR/>
 また、映像が内蔵 VDP と別になりますので、メニューの [Setting] - [Video] - [Video source to display] で映像ソースを V9968 に切り替えてください。<BR/>
+
+<H2>V9968 と V9968 エミュレータの差異</H2>
+<H3>各種表示タイミング(HSYNC,VSYNC等)</H3>
+<P>V9968 エミュレータは V9958 エミュレータと同じタイミングで動作します。</P>
+<P>VRAM アクセススロットは V9968 と(なるべく)同じタイミングになるようにしています。</P>
+<H3>VDPコマンドとP#0の VRAM R/W 処理が重なった時の R/W タイミング</H3>
+<P>V9968 は P#0 を優先する排他処理を行いますが、V9968 エミュレータは排他処理が行えない為に VDP コマンドと P#0 のアクセスを同時に行います。</P>
+<H3>VDPコマンドとP#0の VRAM R/W 処理が重なった時の VDP コマンドのデータ</H3>
+<P>V9968 はキャッシュ上のデータを使用しますが、V9968 エミュレータは VRAM のデータを直接 R/W します。</P>
+<H3>VDP コマンドの NX, NY 処理</H3>
+<P>V9968 は NX, NY のカウントをインクリメントカウンタで行いますが、V9968 エミュレータはデクリメントでカウントします。この為、VDP コマンド動作中に NX や NY レジスタを書き換えた場合の挙動が異なります。</P>
 
 </BODY>
 </HTML>
